@@ -10,9 +10,13 @@ Example: Upscale by the factor of 3 with sampling window size 4
 </p>
 
 **Example Code**: EDI_predict(img_input, 4, 3)
+
 **Low Resolution (25, 25)**: Input image of size 25x25
+
 **Groundtruth (75, 75)**: Goundtruth image to compare with EDI and Bilinear Interpolation results
+
 **EDI (75, 75)**: Scaling up the input image by the factor of 3 with EDI
+
 **Bilinear (75, 75)**: Scaling up the input image by the factor of 3 with Bilinear Interpolation
 
 
@@ -33,11 +37,11 @@ This is a python script. Please make sure you have pip installed opencv-python, 
     EDI_predict(img, m, s)
 ```
 
-**img** is the input image
+*img* is the input image
     
-**m** is the sampling window size, not scaling factor! The larger the m, more blurry the image. Ideal m >= 4. 
+*m* is the sampling window size, not scaling factor! The larger the m, more blurry the image. Ideal m >= 4. 
 
-**s** is the scaling factor, support any s > 0 (e.g. use s=2 to upscale by 2, use s=0.5 to downscale by 2)
+*s* is the scaling factor, support any s > 0 (e.g. use s=2 to upscale by 2, use s=0.5 to downscale by 2)
 
 ### Citation
 
