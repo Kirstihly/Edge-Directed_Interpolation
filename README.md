@@ -3,7 +3,7 @@
 Zoom a grayscale image with any scaling factor with EDI (New Edge-Directed Interpolation)
 
 <p align = 'center'>
-<img src = 'images/flower3.jpg' height = '627px'>
+<img src = 'images/flower3.png' height = '627px'>
 </p>
 <p align = 'center'>
 Example: img_output = EDI_predict(img_input, 4, 3)
