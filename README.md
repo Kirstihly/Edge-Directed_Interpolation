@@ -41,6 +41,7 @@ s is the scaling factor, support any s > 0 (e.g. use s=2 to upscale by 2, use s=
     title = {New Edge-Directed Interpolation},
     year = {2020},
     howpublished = {\url{https://github.com/Kirstihly/Edge-Directed_Interpolation/}},
+    note = {Online; accessed DD MM YYYY} 
   }
 ```
 
