@@ -5,6 +5,10 @@ import math
 import sys
 
 """
+Author:
+
+    hu.leying@columbia.edu
+
 Usage:
 
     EDI_predict(img, m, s)

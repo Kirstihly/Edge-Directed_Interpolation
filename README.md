@@ -57,4 +57,6 @@ This is a python script. Please make sure you have pip installed opencv-python, 
 
 ### Attributions
 
+If you have any suggestion, please reach out to hu.leying@columbia.edu
+
 Special thanks to Parashar Krishnamachari's post [Edge-Directed Interpolation](http://chiranjivi.tripod.com/EDITut.html) to help me understand the logistic of the NEDI.
