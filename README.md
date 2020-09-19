@@ -13,7 +13,7 @@ Example: Upscale by the factor of 3 with sampling window size 4
 
 **Low Resolution (25, 25)**: Input image of size 25x25
 
-**Groundtruth (75, 75)**: Goundtruth image to compare with EDI and Bilinear Interpolation results
+**Groundtruth (75, 75)**: Groundtruth image to compare with EDI and Bilinear Interpolation results
 
 **EDI (75, 75)**: Scaling up the input image by the factor of 3 with EDI
 
