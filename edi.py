@@ -81,9 +81,10 @@ def EDI_upscale(img, m):
             imgo[2*i][2*j+1] = np.matmul([imgo[2*i-1][2*j+1], imgo[2*i][2*j], imgo[2*i+1][2*j+1], imgo[2*i][2*j+2]], a)
     
     # Fill the rest with bilinear interpolation
+    np.clip(imgo, 0, 255.0, out=imgo)
     imgo_bilinear = cv2.resize(img, dsize=(h*2,w*2), interpolation=cv2.INTER_LINEAR)
     imgo[imgo==0] = imgo_bilinear[imgo==0]
-
+    
     return imgo.astype(img.dtype)
 
 def EDI_predict(img, m, s):
@@ -93,6 +94,8 @@ def EDI_predict(img, m, s):
     except:
         sys.exit("Error input: Please input a valid grayscale image!")
     
+    output_type = img.dtype
+
     if s <= 0:
         sys.exit("Error input: Please input s > 0!")
     elif s == 1:
@@ -100,17 +103,19 @@ def EDI_predict(img, m, s):
         return img
     elif s < 2:
         # Linear Interpolation is enough for downscaling and upscaling not over 2
-        return cv2.resize(img, dsize=(int(h*s),int(w*s)), interpolation=cv2.INTER_LINEAR)
+        return cv2.resize(img, dsize=(int(h*s),int(w*s)), interpolation=cv2.INTER_LINEAR).astype(output_type)
     else:
         # Calculate how many times to do the EDI upscaling
         n = math.floor(math.log(s, 2))
         for i in range(n):
             img = EDI_upscale(img, m)
         
-        # Update new shape
-        w, h = img.shape
-        
         # Upscale to the expected size with linear interpolation
         linear_factor = s / math.pow(2, n)
-        return cv2.resize(img, dsize=(int(h*linear_factor),int(w*linear_factor)), interpolation=cv2.INTER_LINEAR)
+        if linear_factor == 1:
+            return img.astype(output_type)
+
+        # Update new shape
+        w, h = img.shape
+        return cv2.resize(img, dsize=(int(h*linear_factor),int(w*linear_factor)), interpolation=cv2.INTER_LINEAR).astype(output_type)
 
