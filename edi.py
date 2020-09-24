@@ -17,13 +17,30 @@ Usage:
     # m is the sampling window size, not scaling factor! The larger the m, more blurry the image. Ideal m >= 4. 
     # s is the scaling factor, support any s > 0 (e.g. use s=2 to upscale by 2, use s=0.5 to downscale by 2) 
     
-Or you want to directly call EDI_upscale to upscale image by the scale of 2:
+If you want to directly call EDI_upscale to upscale image by the scale of 2:
 
     EDI_upscale(img, m) 
 
     # m should be the power of 2. Will increment by 1 if input m is odd 
+    
+If you want to directly call EDI_downscale to downscale image by the scale of 2:
+
+    EDI_downscale(img) 
 
 """
+
+def EDI_downscale(img):
+    
+    # initializing downgraded image
+    w, h = img.shape
+    imgo2 = np.zeros((w//2, h//2))
+
+    # downgrading image
+    for i in range(w//2):
+        for j in range(h//2):
+            imgo2[i][j] = int(img[2*i][2*j])
+            
+    return imgo2.astype(img.dtype)
 
 def EDI_upscale(img, m):
     
@@ -98,12 +115,28 @@ def EDI_predict(img, m, s):
 
     if s <= 0:
         sys.exit("Error input: Please input s > 0!")
+        
     elif s == 1:
         print("No need to rescale since s = 1")
         return img
+    
+    elif s < 1:
+        # Calculate how many times to do the EDI downscaling
+        n = math.floor(math.log(1/s, 2))
+        
+        # Downscale to the expected size with linear interpolation
+        linear_factor = 1/s / math.pow(2, n)
+        if linear_factor != 1:
+            img = cv2.resize(img, dsize=(int(h/linear_factor),int(w/linear_factor)), interpolation=cv2.INTER_LINEAR).astype(output_type)
+
+        for i in range(n):
+            img = EDI_downscale(img)
+        return img
+        
     elif s < 2:
-        # Linear Interpolation is enough for downscaling and upscaling not over 2
+        # Linear Interpolation is enough for upscaling not over 2
         return cv2.resize(img, dsize=(int(h*s),int(w*s)), interpolation=cv2.INTER_LINEAR).astype(output_type)
+    
     else:
         # Calculate how many times to do the EDI upscaling
         n = math.floor(math.log(s, 2))
