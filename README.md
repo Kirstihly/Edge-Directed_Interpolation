@@ -29,13 +29,6 @@ Scaling up the input image by the factor of 3 with EDI
 
 Scaling up the input image by the factor of 3 with Bilinear Interpolation
 
-
-My implementation is based on Xin L. and Michael T. O's [New edge-directed interpolation](https://ieeexplore.ieee.org/document/951537)
-
-### Sponsorship
-
-Please consider acknowledging this small project for research use. Thank you!
-
 ## Implementation Details
 
 This is a python script. Please make sure you have pip installed opencv-python, numpy, matplotlib.
@@ -67,6 +60,10 @@ This is a python script. Please make sure you have pip installed opencv-python, 
 
 ### Attributions
 
+Please consider acknowledging this small project for research use. Thank you!
+
 If you have any suggestion, please reach out to hu.leying@columbia.edu
+
+My implementation is based on Xin L. and Michael T. O's [New edge-directed interpolation](https://ieeexplore.ieee.org/document/951537)
 
 Special thanks to Parashar Krishnamachari's post [Edge-Directed Interpolation](http://chiranjivi.tripod.com/EDITut.html) to help me understand the logistic of the NEDI.
