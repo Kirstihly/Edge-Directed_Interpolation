@@ -9,15 +9,25 @@ Zoom a grayscale image with any scaling factor with EDI (New Edge-Directed Inter
 Example: Upscale by the factor of 3 with sampling window size 4
 </p>
 
-**Example Code**: EDI_predict(img_input, 4, 3)
+**Example Code**
 
-**Low Resolution (25, 25)**: Input image of size 25x25
+EDI_predict(img_input, 4, 3)
 
-**Groundtruth (75, 75)**: Groundtruth image to compare with EDI and Bilinear Interpolation results
+**Low Resolution (84, 84, 3)**
 
-**EDI (75, 75)**: Scaling up the input image by the factor of 3 with EDI
+Input image of size (84, 84, 3)
 
-**Bilinear (75, 75)**: Scaling up the input image by the factor of 3 with Bilinear Interpolation
+**Groundtruth (252, 252, 3)**
+
+Groundtruth image to compare with EDI and Bilinear Interpolation results
+
+**EDI (252, 252, 3)**
+
+Scaling up the input image by the factor of 3 with EDI
+
+**Bilinear (252, 252, 3)**
+
+Scaling up the input image by the factor of 3 with Bilinear Interpolation
 
 
 My implementation is based on Xin L. and Michael T. O's [New edge-directed interpolation](https://ieeexplore.ieee.org/document/951537)
